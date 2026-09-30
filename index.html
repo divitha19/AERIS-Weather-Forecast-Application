@@ -1,90 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Weather Forecast App</title>
-    </head>
-    <style>
-body {
-    font-family: Arial, sans-serif;
-    background: url('https://images.unsplash.com/photo-1501973801540-537f08ccae7b?auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-.weather-box {
-    background: rgba(0, 0, 0, 0.6); /* dark semi-transparent for readability */
-    color: white;
-    padding: 25px;
-    border-radius: 15px;
-    width: 350px;
-    text-align: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
-input {
-    width: 90%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: none;
-}
-
-button {
-    padding: 10px 20px;
-    background: #ff9800;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-button:hover {
-    background: #e68900;
-}
-
-.result {
-    margin-top: 15px;
-    font-size: 16px;
-}
-</style>
 <body>
 
-<div class="box">
-    <h2>Weather Forecast</h2>
-    <input type="text" id="city" placeholder="Enter city name">
-    <button onclick="getWeather()">Get Weather</button>
-    <div id="output"></div>
-</div>
+<header>
+    <h1>🌤️ Weather Forecast</h1>
+    <p>Check current weather and forecast for any city</p>
+</header>
 
-<script>
-    function getWeather() {
-        const city = document.getElementById("city").value.toLowerCase();
-        const output = document.getElementById("output");
+<main>
 
-        const weatherData = {
-            "hyderabad": { temp: 32, humidity: 55, condition: "Sunny" },
-            "chennai": { temp: 34, humidity: 60, condition: "Hot" },
-            "delhi": { temp: 30, humidity: 50, condition: "Clear" },
-            "mumbai": { temp: 29, humidity: 70, condition: "Humid" }
-        };
+    <section class="search-box">
+        <input type="text" id="cityInput" placeholder="Enter city name">
+        <button onclick="searchWeather()">Search</button>
+        <button onclick="getLocationWeather()">📍 My Location</button>
+    </section>
 
-        if (weatherData[city]) {
-            output.innerHTML = `
-                <h3>${city.toUpperCase()}</h3>
-                <p>🌡 Temp: ${weatherData[city].temp} °C</p>
-                <p>💧 Humidity: ${weatherData[city].humidity}%</p>
-                <p>☁ Condition: ${weatherData[city].condition}</p>
-            `;
-        } else {
-            output.innerHTML = "❌ City not found in database";
-        }
-    }
-</script>
+    <p id="message"></p>
+
+    <section id="weather" class="weather-card hidden">
+
+        <div class="current-weather">
+            <div>
+                <h2 id="cityName">--</h2>
+                <p id="date">--</p>
+                <p id="description">--</p>
+            </div>
+
+            <div class="temperature">
+                <span id="temperature">--</span>°C
+            </div>
+        </div>
+
+        <div class="details">
+
+            <div class="detail">
+                <span>💧</span>
+                <p>Humidity</p>
+                <strong id="humidity">--</strong>
+            </div>
+
+            <div class="detail">
+                <span>💨</span>
+                <p>Wind Speed</p>
+                <strong id="wind">--</strong>
+            </div>
+
+            <div class="detail">
+                <span>🌡️</span>
+                <p>Feels Like</p>
+                <strong id="feels">--</strong>
+            </div>
+
+            <div class="detail">
+                <span>☁️</span>
+                <p>Cloud Cover</p>
+                <strong id="cloud">--</strong>
+            </div>
+
+        </div>
+
+        <h2 class="forecast-title">5-Day Forecast</h2>
+
+        <div id="forecast" class="forecast"></div>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>Weather Forecasting Application</p>
+    <p>Built with HTML, CSS, JavaScript & Python</p>
+</footer>
+
+<script src="js/script.js"></script>
 
 </body>
 </html>
